@@ -3,6 +3,7 @@
 
   <div class="chat-box">
     <div *ngFor="let msg of messages" class="message">
+      <span> [{{ msg.time }}] </span>
       <strong>{{ msg.username }}</strong>: {{ msg.message }}
     </div>
   </div>

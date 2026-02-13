@@ -18,7 +18,17 @@ io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   socket.on("chatMessage", (message) => {
-    io.emit("chatMessage", message);
+    
+    const now = new Date();
+    const time = now.toTimeString().split(" ")[0];
+
+    const messageWithTime = {
+      username: message.username,
+      message: message.message,
+      time: time
+    };
+
+    io.emit("chatMessage", messageWithTime);
   });
 
   socket.on("disconnect", () => {
