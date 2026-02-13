@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import { io, Socket } from 'socket.io-client';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ChatService {
+
+  private socket: Socket;
+
+  constructor() {
+    this.socket = io('http://localhost:3000', {
+        transports: ['websocket']
+    });
+  }
+
+  sendMessage(message: any) {
+    this.socket.emit('chatMessage', message);
+  }
+
+  getMessages(): Observable<any> {
+    return new Observable(observer => {
+      this.socket.on('chatMessage', (data) => {
+        observer.next(data);
+      });
+    });
+  }
+}

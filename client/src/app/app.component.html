@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="title"><img src="images/flat.png" />Resident Live Form Chat</h1>
+
+  <div class="chat-box">
+    <div *ngFor="let msg of messages" class="message">
+      <strong>{{ msg.username }}</strong>: {{ msg.message }}
+    </div>
+  </div>
+
+  <div class="form">
+    <input type="text" placeholder="Username" [(ngModel)]="username" />
+    <input type="text" placeholder="Message" [(ngModel)]="message" (keyup.enter)="sendMessage()" />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
