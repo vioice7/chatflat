@@ -9,9 +9,16 @@ export class ChatService {
 
   private socket: Socket;
 
+  private socketId: string | undefined;
+
   constructor() {
     this.socket = io('http://localhost:3000', {
         transports: ['websocket']
+    });
+
+    this.socket.on('connect', () => {
+      this.socketId = this.socket.id;
+      console.log('Connected to server with socket id', this.socketId);
     });
   }
 
@@ -25,5 +32,9 @@ export class ChatService {
         observer.next(data);
       });
     });
+  }
+
+  getSocketId(): string | undefined {
+    return this.socketId;
   }
 }

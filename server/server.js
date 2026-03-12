@@ -25,7 +25,8 @@ io.on("connection", (socket) => {
     const messageWithTime = {
       username: message.username,
       message: message.message,
-      time: time
+      time: time,
+      socketId: socket.id
     };
 
     io.emit("chatMessage", messageWithTime);

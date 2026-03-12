@@ -18,12 +18,15 @@ export class AppComponent implements OnInit {
 
   constructor(private chatService: ChatService, private cdr: ChangeDetectorRef) {}
 
-ngOnInit(): void {
-  this.chatService.getMessages().subscribe((msg: any) => {
-    this.messages.push(msg);
-    this.cdr.detectChanges();
-  });
-}
+  ngOnInit(): void {
+    this.chatService.getMessages().subscribe((msg: any) => {
+      const myId = this.chatService.getSocketId();
+      msg.own = msg.socketId && myId ? msg.socketId === myId : false;
+
+      this.messages.push(msg);
+      this.cdr.detectChanges();
+    });
+  }
 
   sendMessage() {
     if (this.username && this.message) {

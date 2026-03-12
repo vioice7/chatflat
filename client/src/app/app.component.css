@@ -16,6 +16,12 @@
   margin-bottom: 8px;
 }
 
+.own {
+  background-color: #d4f8d4;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
 .title {
   display: flex;
   align-items: center;

@@ -2,7 +2,7 @@
   <h1 class="title"><img src="images/flat.png" />Resident Live Form Chat</h1>
 
   <div class="chat-box">
-    <div *ngFor="let msg of messages" class="message">
+    <div *ngFor="let msg of messages" [ngClass]="{ 'message': true, 'own': msg.own }">
       <span> [{{ msg.time }}] </span>
       <strong>{{ msg.username }}</strong>: {{ msg.message }}
     </div>
